@@ -4,7 +4,7 @@ from sklearn.decomposition import PCA
 import os
 
 # Load the dataset
-df = pd.read_csv('./data/student_performance_full.csv')
+df = pd.read_csv('./data/raw/student_performance_full.csv')
 
 # Separating features and target variable
 X = df.drop(columns=['Placed'])
@@ -15,11 +15,11 @@ scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
 
 # Applying PCA
-pca = PCA(n_components=2)
+pca = PCA(n_components=3)
 X_pca = pca.fit_transform(X_scaled)
 
 # Creating a DataFrame with PCA results
-df_pca = pd.DataFrame(data=X_pca, columns=['PC1', 'PC2'])
+df_pca = pd.DataFrame(data=X_pca, columns=['PC1', 'PC2','PC3'])
 df_pca['Placed'] = y.values
 
 # Saving the PCA result to CSV
